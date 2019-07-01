@@ -3,12 +3,14 @@
  */
 package com.sample.app.services;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 /**
@@ -16,13 +18,18 @@ import org.springframework.test.context.junit4.SpringRunner;
  *
  */
 @RunWith(SpringRunner.class)
+@SpringBootTest
 public class ValueServiceImplTest {
+
+	@Autowired
+	private ValueServiceImpl valueService;
 
 	/**
 	 * @throws java.lang.Exception
 	 */
 	@Before
 	public void setUp() throws Exception {
+		valueService.value = 5;
 	}
 
 	/**
@@ -34,20 +41,20 @@ public class ValueServiceImplTest {
 
 	/**
 	 * Test method for
-	 * {@link com.sample.app.services.ValueServiceImpl#incrementValue()}.
+	 * {@link com.sample.app.services.ValueServiceImpl#increaseValue()}.
 	 */
 	@Test
-	public void testIncrementValue() {
-		assertTrue(true);
+	public void testIncrementValue()throws Exception{
+		assertEquals(valueService.increaseValue(), 6);
 	}
 
 	/**
 	 * Test method for
-	 * {@link com.sample.app.services.ValueServiceImpl#decrementValue()}.
+	 * {@link com.sample.app.services.ValueServiceImpl#decreaseValue()}.
 	 */
 	@Test
-	public void testDecrementValue() {
-		assertTrue(true);
+	public void testDecrementValue() throws Exception{
+		assertEquals(valueService.decreaseValue(), 4);
 	}
 
 	/**
@@ -56,7 +63,7 @@ public class ValueServiceImplTest {
 	 */
 	@Test
 	public void testGetCurrentValue() {
-		assertTrue(true);
+		assertEquals(valueService.getCurrentValue(), 5);
 	}
 
 }

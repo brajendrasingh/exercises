@@ -63,14 +63,14 @@ public class ValueControllerTest {
 
 	/**
 	 * Test method for
-	 * {@link com.sample.app.controller.ValueController#incrementValue()}.
+	 * {@link com.sample.app.controller.ValueController#increaseValue()}.
 	 * 
 	 * @throws Exception
 	 */
 	@Test
 	public void testIncrementValue() throws Exception {
 
-		Mockito.when(valueService.incrementValue()).thenReturn(5);
+		Mockito.when(valueService.increaseValue()).thenReturn(5);
 
 		RequestBuilder requestBuilder = MockMvcRequestBuilders.get("/incr").headers(headers)
 				.accept(MediaType.APPLICATION_JSON);
@@ -80,19 +80,41 @@ public class ValueControllerTest {
 		String expectedResult = "{\"value\":5}";
 
 		JSONAssert.assertEquals(expectedResult, result.getResponse().getContentAsString(), false);
-		verify(valueService, times(1)).incrementValue();
+		verify(valueService, times(1)).increaseValue();
+	}
+
+	/**
+	 * Test increment value with exception.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test
+	public void testIncrementValueWithException() throws Exception {
+
+		Mockito.when(valueService.increaseValue()).thenThrow(new Exception());
+
+		RequestBuilder requestBuilder = MockMvcRequestBuilders.get("/incr").headers(headers)
+				.accept(MediaType.APPLICATION_JSON);
+
+		MvcResult result = mvc.perform(requestBuilder).andExpect(status().isOk()).andReturn();
+
+		String expectedResult = "{\"value\":0}";
+
+		JSONAssert.assertEquals(expectedResult, result.getResponse().getContentAsString(), false);
+		verify(valueService, times(1)).increaseValue();
 	}
 
 	/**
 	 * Test method for
-	 * {@link com.sample.app.controller.ValueController#decrementValue()}.
+	 * {@link com.sample.app.controller.ValueController#decreaseValue()}.
 	 * 
 	 * @throws Exception
 	 */
 	@Test
 	public void testDecrementValue() throws Exception {
 
-		Mockito.when(valueService.decrementValue()).thenReturn(5);
+		Mockito.when(valueService.decreaseValue()).thenReturn(5);
 
 		RequestBuilder requestBuilder = MockMvcRequestBuilders.get("/decr").headers(headers)
 				.accept(MediaType.APPLICATION_JSON);
@@ -102,7 +124,30 @@ public class ValueControllerTest {
 		String expectedResult = "{\"value\":5}";
 
 		JSONAssert.assertEquals(expectedResult, result.getResponse().getContentAsString(), false);
-		verify(valueService, times(1)).decrementValue();
+		verify(valueService, times(1)).decreaseValue();
+
+	}
+
+	/**
+	 * Test decrement value with exception.
+	 *
+	 * @throws Exception
+	 *             the exception
+	 */
+	@Test
+	public void testDecrementValueWithException() throws Exception {
+
+		Mockito.when(valueService.decreaseValue()).thenThrow(new Exception());
+
+		RequestBuilder requestBuilder = MockMvcRequestBuilders.get("/decr").headers(headers)
+				.accept(MediaType.APPLICATION_JSON);
+
+		MvcResult result = mvc.perform(requestBuilder).andExpect(status().isOk()).andReturn();
+
+		String expectedResult = "{\"value\":0}";
+
+		JSONAssert.assertEquals(expectedResult, result.getResponse().getContentAsString(), false);
+		verify(valueService, times(1)).decreaseValue();
 
 	}
 

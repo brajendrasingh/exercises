@@ -35,13 +35,15 @@
 		<jackson.version>2.9.5</jackson.version>
 		<!-- Sonar Properties -->
 		<sonar.jdbc.url>jdbc:mysql://localhost:3306/sonar?useUnicode=true&amp;characterEncoding=utf8</sonar.jdbc.url>
-        <sonar.jdbc.username>sonar</sonar.jdbc.username>
-        <sonar.jdbc.password>sonar</sonar.jdbc.password>
-        <sonar.host.url>http://localhost:9000</sonar.host.url>
+		<sonar.jdbc.username>sonar</sonar.jdbc.username>
+		<sonar.jdbc.password>sonar</sonar.jdbc.password>
+		<sonar.host.url>http://localhost:9000</sonar.host.url>
         
 		<sonar.core.codeCoveragePlugin>jacoco</sonar.core.codeCoveragePlugin>
-        <jacoco-maven-plugin.version>0.8.4</jacoco-maven-plugin.version>
-        <sonar.jacoco.reportPaths>${basedir}/target/jacoco.exec</sonar.jacoco.reportPaths>
+		<jacoco-maven-plugin.version>0.8.4</jacoco-maven-plugin.version>
+		<sonar.jacoco.reportPaths>${basedir}/target/jacoco.exec</sonar.jacoco.reportPaths>
+		<sonar.exclusions>**/models/**/*,**/*.xml</sonar.exclusions>
+		<sonar.test.exclusions>src/test/**/*</sonar.test.exclusions>
 	</properties>
 
 	<dependencies>
@@ -116,7 +118,7 @@
 				<configuration>
 					<excludes>
 						<exclude>**/*com/sample/app/SampleAppApplication.class</exclude>
-						 <exclude>**/*com/sample/app/models/**/*</exclude>
+						<exclude>**/*com/sample/app/models/**/*</exclude>
 					</excludes>
 				</configuration>
 				<executions>

@@ -16,10 +16,20 @@ public interface ValueService {
 	 *
 	 * @return the int
 	 */
-	public int incrementValue();
+	public int increaseValue()throws Exception;
 
-	public int decrementValue();
+	/**
+	 * Decrement value.
+	 *
+	 * @return the int
+	 */
+	public int decreaseValue()throws Exception;
 
+	/**
+	 * Gets the current value.
+	 *
+	 * @return the current value
+	 */
 	public int getCurrentValue();
 
 }
