@@ -16,6 +16,9 @@ import com.sample.app.services.ValueService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * The Class ValueController.
  *
@@ -24,6 +27,9 @@ import io.swagger.annotations.ApiOperation;
 @Api(value = "ValueIncrementDecrementAPI")
 @RestController
 public class ValueController {
+
+	/** The Constant logger. */
+	private final static Logger logger = LoggerFactory.getLogger(ValueController.class);
 
 	/** The value service. */
 	@Autowired
@@ -41,8 +47,17 @@ public class ValueController {
 			@ApiResponse(code = 404, message = "The resource you were trying to reach is not found") })
 	@RequestMapping(value = "incr", method = RequestMethod.GET, produces = "application/json")
 	public Response incrementValue() {
+		logger.info("method incrementValue execution start");
+		Response res = null;
 
-		return new Response(valueService.incrementValue());
+		try {
+			res = new Response(valueService.incrementValue());
+			logger.info("response", res);
+		} catch (Exception e) {
+			logger.error("StackTrace ", e);
+		}
+		logger.info("method incrementValue terminates");
+		return res;
 	}
 
 	@ApiOperation(value = "it will increse value of counter", notes = "it will increse value of counter and will return value in JSON format")

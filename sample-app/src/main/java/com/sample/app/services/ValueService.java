@@ -3,15 +3,19 @@
  */
 package com.sample.app.services;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
- * @author BRAJENDRA SINGH
+ * The Interface ValueService.
  *
+ * @author BRAJENDRA SINGH
  */
 public interface ValueService {
 
+	/**
+	 * Increment value.
+	 *
+	 * @return the int
+	 */
 	public int incrementValue();
 
 	public int decrementValue();
