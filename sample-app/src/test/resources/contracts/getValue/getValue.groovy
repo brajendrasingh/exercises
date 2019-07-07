@@ -6,22 +6,24 @@ Contract.make {
   description "should return value"
   priority 1
   request {
-    method 'GET'
-    urlPath('/currentvalue') {
-      queryParameters {
-        parameter 'value': value(regex('[\\w._-]+'))
-      }
-    }
+   method 'GET'
+   urlPath('/currentvalue') 
+   
     headers{ header('''Accept''', 'application/json') }
-  }
+   }
   response {
     headers{ contentType("application/json;charset=UTF-8") }
-    status 200
+   status 200
 
-    bodyMatchers {
-      jsonPath('$.value', byType())
+   bodyMatchers {
+    jsonPath('$.value', byType())
+   }
+
+   body('''
+    {
+     "value": 401
     }
-    String response = file("value.json");
-    body(response)
+    ''')
+
+   }
   }
-}
