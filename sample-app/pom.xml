@@ -159,6 +159,26 @@
 				</executions>
 			</plugin>
 			<plugin>
+				<groupId>com.diffplug.spotless</groupId>
+				<artifactId>spotless-maven-plugin</artifactId>
+				<version>3.23.1</version>
+				<configuration>
+					<java>
+						<excludes>
+							<!-- excluding some auto generated files -->
+							<exclude>**/generated-test-sources/**</exclude>
+						</excludes>
+						<includes>
+							<include>**/*.java</include>
+						</includes>
+						<eclipse>
+							<file>${basedir}/java-formatter-config.xml</file>
+						</eclipse>
+						<removeUnusedImports />
+					</java>
+				</configuration>
+			</plugin>
+			<plugin>
 				<groupId>org.springframework.cloud</groupId>
 				<artifactId>spring-cloud-contract-maven-plugin</artifactId>
 				<version>${spring-cloud-contract.version}</version>
