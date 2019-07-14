@@ -67,7 +67,7 @@
 			<scope>test</scope>
 		</dependency>
 		<!-- producer contract -->
-		
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
@@ -161,7 +161,7 @@
 			<plugin>
 				<groupId>com.diffplug.spotless</groupId>
 				<artifactId>spotless-maven-plugin</artifactId>
-				<version>3.23.1</version>
+				<version>1.23.1</version>
 				<configuration>
 					<java>
 						<excludes>
@@ -175,6 +175,7 @@
 							<file>${basedir}/java-formatter-config.xml</file>
 						</eclipse>
 						<removeUnusedImports />
+						<trimTrailingWhitespace />
 					</java>
 				</configuration>
 			</plugin>
